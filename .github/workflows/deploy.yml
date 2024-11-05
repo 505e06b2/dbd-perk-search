@@ -10,6 +10,7 @@ jobs:
       - name: Build static files
         id: build
         run: |
+          sudo apt-get install -y python3-lupa
           git clone "https://github.com/${GITHUB_REPOSITORY}" "$SITE_FOLDER"
           cd "$SITE_FOLDER"
           ./assets/*
