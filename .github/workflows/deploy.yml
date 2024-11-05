@@ -1,0 +1,39 @@
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      SITE_FOLDER: _site/
+    steps:
+      - name: Build static files
+        id: build
+        run: |
+          git clone "https://github.com/${GITHUB_REPOSITORY}" "$SITE_FOLDER"
+          cd "$SITE_FOLDER"
+          ./assets/*
+          ./data/*
+          
+      - name: Upload static files as artifact
+        id: deployment
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ${{ env.SITE_FOLDER }}
+
+  deploy:
+    needs: build
+    
+    permissions:
+      pages: write
+      id-token: write
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
