@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf8">
+		<meta name="viewport" content="width=600, initial-scale=1" />
+		<link href="style.css" rel="stylesheet">
+		<script src="js/main.mjs" type="module"></script>
+	</head>
+	<body>
+		<div id="loading">Loading...</div>
+		<div id="top-bar" class="hidden">
+			<input id="search-bar" type="text" placeholder="Search...">
+			<div id="type-row">
+				<input type="radio" name="type" value="all" checked="true" data-text="All">
+				<input type="radio" name="type" value="survivor" data-text="Survivors">
+				<input type="radio" name="type" value="killer" data-text="Killers">
+			</div>
+		</div>
+		<div id="perk-list" class="hidden"></div>
+	</body>
+</html>
